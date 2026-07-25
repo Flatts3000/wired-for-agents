@@ -21,6 +21,10 @@ realistic attack surface is narrow. The things worth reporting:
 
 ## Reporting a vulnerability
 
+This policy is also advertised at
+[`/.well-known/security.txt`](https://wiredforagents.com/.well-known/security.txt)
+(RFC 9116).
+
 Please use **GitHub Private Vulnerability Reporting** on this repository
 (Security tab, "Report a vulnerability"). That keeps the report private until a
 fix ships.

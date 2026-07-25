@@ -23,9 +23,13 @@ verification possible later.
 | **WFA-3** | **Programmatic auth** | Scoped API keys or tokens built for machine access. No human-in-the-loop login required to get in. |
 | **WFA-4** | **Machine discovery** | An agent can find the doors on its own: `llms.txt`, `/.well-known`, a linked OpenAPI document. |
 
-Precise, testable definitions live in [`SPEC.md`](./SPEC.md), which is the
-versioned source of truth. This README restates them for convenience; if the two
-ever disagree, the spec wins.
+Precise, testable definitions live in [`SPEC.md`](./SPEC.md), which is the versioned
+source of truth, and are published at
+[wiredforagents.com/spec](https://wiredforagents.com/spec). This README restates them
+for convenience; if any of them disagree, `SPEC.md` wins.
+
+> `spec.html` is generated from `SPEC.md` by `tools/build_spec.py`. Edit the Markdown,
+> re-run the script, commit both. Never hand-edit the HTML.
 
 ## This is not a readability score
 
