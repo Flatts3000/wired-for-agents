@@ -6,9 +6,9 @@ It tells a human or an AI agent one thing at a glance: this product can be
 discovered, read, and acted on programmatically, via a documented API and an MCP
 server. Not a screen an agent scrapes. Doors that were built for it.
 
-> **Status: built, not yet deployed.** The specification, badge assets, and landing
-> page are in this repo. The domain is registered but the site is not live yet, so
-> the embed URLs below do not resolve. Watch this repo.
+> **Status: live at [wiredforagents.com](https://wiredforagents.com).** Specification
+> v0.1, badge assets, and landing page are all deployed. The embed snippets below
+> resolve today. The badge is self-asserted; see the note at the bottom.
 
 ## What earns the mark
 
@@ -39,7 +39,7 @@ call you.
 
 ## Using the badge
 
-Once the assets are live, one line in your footer:
+One line in your footer:
 
 ```html
 <a href="https://wiredforagents.com">

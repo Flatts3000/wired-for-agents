@@ -104,10 +104,11 @@ TEMPLATE = """<!doctype html>
   pre:focus-visible{{outline:2px solid var(--accent-2); outline-offset:3px}}
   pre code{{background:none; border:0; padding:0; font-size:12.5px; white-space:pre}}
   hr{{border:0; border-top:1px solid var(--line); margin:48px 0}}
-  /* SPEC.md uses --- before most section headings; the h2 already draws a rule,
-     so collapse the pair instead of rendering two lines. */
+  /* SPEC.md puts --- before most section headings, and h2 draws its own rule.
+     Suppress the h2's rule so the pair renders as ONE divider, and let the <hr>
+     be that divider. Do NOT also hide the hr: doing both removes the divider
+     entirely. Deliberately avoids :has() so this holds in every browser. */
   hr + h2{{border-top:0; padding-top:0; margin-top:28px}}
-  hr:has(+ h2){{display:none}}
   table{{border-collapse:collapse; width:100%; margin:20px 0; font-size:15px}}
   th,td{{border:1px solid var(--line); padding:9px 12px; text-align:left}}
   th{{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}}
