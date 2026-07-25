@@ -17,8 +17,15 @@ a scope change - raise it rather than introducing one.
 hand-edit `spec.html`. Edit `SPEC.md`, re-run `python tools/build_spec.py`, and commit
 both. The generated output is committed precisely so Vercel still deploys with zero build.
 
-Deploys currently run via `vercel deploy --prod --yes`. Push-to-deploy is not wired up
-until the Vercel GitHub App is granted access to the repo.
+**Deploys are automatic.** The GitHub repo is connected to the Vercel project, so a push
+to `main` ships to production. `vercel deploy --prod --yes` still works for an out-of-band
+deploy, but it is not the normal path.
+
+**Preview builds are deliberately off.** `ignoreCommand` in `vercel.json` exits 0 for any
+non-production `VERCEL_ENV`, which tells Vercel to skip the build; production exits 1 and
+builds. Vercel has no native "previews off, production on" toggle: `git.deploymentEnabled`
+defaults *unspecified* branches to `true`, so listing `main` alone would not suppress
+future branches. Do not replace `ignoreCommand` with that.
 
 > **A build spec exists at `docs/handoff.md` but is gitignored and local-only.** If you
 > have it, read it first: it carries the locked decisions, canonical SVG source, file
