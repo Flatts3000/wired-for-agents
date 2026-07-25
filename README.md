@@ -6,9 +6,9 @@ It tells a human or an AI agent one thing at a glance: this product can be
 discovered, read, and acted on programmatically, via a documented API and an MCP
 server. Not a screen an agent scrapes. Doors that were built for it.
 
-> **Status: in development.** The domains are registered and the specification is
-> being written. The badge assets and landing page are not deployed yet, so the
-> embed snippet below does not resolve. Watch this repo.
+> **Status: built, not yet deployed.** The specification, badge assets, and landing
+> page are in this repo. The domain is registered but the site is not live yet, so
+> the embed URLs below do not resolve. Watch this repo.
 
 ## What earns the mark
 
@@ -47,8 +47,18 @@ Once the assets are live, one line in your footer:
 </a>
 ```
 
-Variants will ship at stable URLs: primary dark and light, a compact cut, a
-monochrome cut that inherits `currentColor`, and a seal for trust bars.
+| File | Size | Notes |
+|---|---|---|
+| `badge.svg` | 216x56 | Primary, dark |
+| `badge-light.svg` | 216x56 | Primary, for light grounds |
+| `badge-compact.svg` | 180x48 | Mark + wordmark, no proof line |
+| `badge-mono.svg` | 216x56 | Single color, inherits `currentColor` |
+| `seal.svg` | 150x150 | Emblem for trust bars and heroes |
+| `favicon.svg` | 48x48 | The mark alone |
+
+> **The monochrome cut must be inlined**, not loaded via `<img>`. An SVG in an
+> `<img>` is an isolated document, so `currentColor` never reaches it and the badge
+> renders black on black. Paste the file into your markup, or use a colored cut.
 
 ## Honesty about v1
 

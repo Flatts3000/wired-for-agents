@@ -1,0 +1,42 @@
+# Wired for Agents
+
+> A vendor-neutral badge and mini-standard for the agentic web. It certifies that a
+> product can be discovered and acted on programmatically, via a documented API and an
+> MCP server. Proof line: API + MCP.
+
+This site publishes the standard and the badge artwork. It is a static site and has no
+API of its own, so it does not claim its own badge.
+
+## What the badge certifies
+
+A product must meet all four criteria to display the mark:
+
+- WFA-1 Documented API: a public, versioned HTTP API with a machine-readable OpenAPI 3.x
+  document at a stable, unauthenticated URL.
+- WFA-2 MCP server: a reachable Model Context Protocol server whose tools meaningfully
+  overlap the API surface, discoverable via tools/list with valid input schemas.
+- WFA-3 Programmatic auth: scoped, revocable machine credentials presented in a header or
+  standard auth flow, with no per-request human interaction.
+- WFA-4 Machine discovery: an agent starting from the bare domain can find the doors
+  unauthenticated, and every advertised URL resolves.
+
+Every criterion is written to be verifiable by an unattended agent in under 60 seconds.
+
+## This is not a readability score
+
+Other tools measure whether an agent can read a site: markdown responses, llms.txt,
+crawlability. This badge certifies a stricter property, that programmatic doors exist and
+an agent can call them without reading the site at all.
+
+## Status
+
+Version 0.1, self-asserted. There is no registry and no gatekeeper. Meeting the criteria
+is the wearer's responsibility, and the criteria are public so that a false claim is cheap
+for anyone to disprove.
+
+## Links
+
+- Specification: https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md
+- Source and issues: https://github.com/Flatts3000/wired-for-agents
+- Badge asset: https://wiredforagents.com/badge.svg
+- Security policy: https://github.com/Flatts3000/wired-for-agents/blob/main/SECURITY.md

@@ -68,10 +68,21 @@ endpoint dots, live status dot on the top vertex - is load-bearing meaning, not
 decoration. It reads simultaneously as a check and as two connected endpoints. Reproduce
 it from the canonical source rather than redrawing it.
 
-The primary badge plate is **248x56**. It was widened from 224 because the wordmark is 16
-characters and overflowed at legible type sizes; "for" is set smaller and muted so the
-eye reads two words rather than sixteen characters. Do not narrow the plate without
-re-solving that.
+The primary badge plate is **216x56** (compact 180x48, seal 150x150). Two constraints
+travel together and must not be changed independently:
+
+- The wordmark carries `textLength="131.5" lengthAdjust="spacingAndGlyphs"`. SVG text
+  cannot be measured before render and the host page's monospace fallback is unknowable,
+  so without this pin a wide fallback overflows the plate on someone else's site, silently.
+- The plate width is derived from that pinned wordmark: it ends at 199.5, the left margin
+  is 15, so 216 yields a matching 16.5 right margin.
+
+Change the wordmark text, size, or letter-spacing and both values are invalid. Re-measure
+in a browser and update them together.
+
+**The mono cut must be inlined.** `currentColor` does not cross an `<img>` boundary; an
+SVG loaded that way is an isolated document, so `badge-mono.svg` used as `<img>` renders
+black on black. Inline it or use a colored cut.
 
 ## Outward actions require confirmation
 

@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wired for Agents - a badge for the agentic web</title>
+<meta name="description" content="A vendor-neutral badge and mini-standard certifying that a product can be discovered and acted on programmatically, via a documented API and an MCP server.">
+<link rel="canonical" href="https://wiredforagents.com">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Wired for Agents">
+<meta property="og:title" content="Wired for Agents - a badge for the agentic web">
+<meta property="og:description" content="Not a screen an agent scrapes. Doors that were built for it. API + MCP.">
+<meta property="og:url" content="https://wiredforagents.com">
+<!-- og.png (1200x630 raster) is still to be produced; most scrapers will not render SVG. -->
+<meta property="og:image" content="https://wiredforagents.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wired for Agents - a badge for the agentic web">
+<meta name="twitter:description" content="Not a screen an agent scrapes. Doors that were built for it. API + MCP.">
+<meta name="twitter:image" content="https://wiredforagents.com/og.png">
+<meta name="theme-color" content="#0E1216">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Wired for Agents",
+  "url": "https://wiredforagents.com",
+  "description": "A vendor-neutral badge and mini-standard certifying that a product can be discovered and acted on programmatically, via a documented API and an MCP server."
+}
+</script>
+<style>
+  :root{
+    --ink:#0E1216; --ink-2:#151C23; --accent:#3DDC97; --accent-2:#56E1FF;
+    --txt:#EAF0F2; --muted:#8B98A3; --line:rgba(255,255,255,.13);
+    --mono:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--ink); color:var(--txt); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(60rem 40rem at 50% -10%, rgba(61,220,151,.10), transparent 70%),
+      radial-gradient(40rem 30rem at 85% 15%, rgba(86,225,255,.06), transparent 70%);
+  }
+  .wrap{position:relative; z-index:1; max-width:1000px; margin:0 auto; padding:0 24px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--accent-2); outline-offset:3px; border-radius:4px}
+
+  /* Hero */
+  header{padding:96px 0 72px; text-align:center}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 28px;
+  }
+  .seal-wrap{
+    display:inline-grid; place-items:center; margin-bottom:32px; position:relative;
+  }
+  .seal-wrap::after{
+    content:""; position:absolute; width:230px; height:230px; border-radius:50%;
+    background:radial-gradient(circle, rgba(61,220,151,.22), transparent 65%);
+    filter:blur(6px); z-index:-1;
+  }
+  h1{
+    font-family:var(--mono); font-size:clamp(30px,6vw,52px); font-weight:700;
+    letter-spacing:.02em; margin:0 0 6px; line-height:1.12;
+  }
+  h1 .for{font-size:.52em; font-weight:600; color:var(--muted); letter-spacing:.08em}
+  .proof{
+    font-family:var(--mono); font-size:clamp(11px,2.2vw,14px); font-weight:600;
+    letter-spacing:.42em; color:var(--accent); margin:0 0 26px; padding-left:.42em;
+  }
+  .lede{
+    max-width:60ch; margin:0 auto; color:var(--muted); font-size:clamp(16px,2.2vw,18px);
+  }
+  .lede strong{color:var(--txt); font-weight:600}
+
+  /* Sections */
+  section{padding:64px 0; border-top:1px solid var(--line)}
+  h2{
+    font-family:var(--mono); font-size:13px; font-weight:700; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--muted); margin:0 0 8px;
+  }
+  .sub{margin:0 0 36px; color:var(--muted); max-width:64ch}
+  .sub strong{color:var(--txt); font-weight:600}
+
+  /* Criteria */
+  .grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .card{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:14px; padding:22px;
+  }
+  .code{
+    font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.16em;
+    color:var(--accent); display:block; margin-bottom:10px;
+  }
+  .card h3{font-size:16px; margin:0 0 8px; font-weight:600}
+  .card p{margin:0; font-size:14px; color:var(--muted)}
+
+  /* Variants */
+  .grounds{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .ground{
+    border:1px solid var(--line); border-radius:14px; padding:28px;
+    display:grid; gap:20px; place-items:center;
+  }
+  .ground.dark{background:var(--ink-2)}
+  .ground.light{background:#F4F7F8; border-color:rgba(14,18,22,.12)}
+  .ground img{max-width:100%; height:auto}
+  .ground .tag{
+    font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  }
+  .ground.dark .tag{color:var(--muted)}
+  .ground.light .tag{color:#68757F}
+  .mono-demo{color:var(--accent-2)}
+
+  /* Snippets */
+  .snippet{margin-bottom:20px}
+  .snippet-head{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px;
+  }
+  .snippet-head h3{
+    font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.1em;
+    color:var(--muted); margin:0; text-transform:uppercase;
+  }
+  button.copy{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    background:transparent; color:var(--accent); border:1px solid var(--line);
+    border-radius:8px; padding:6px 12px; cursor:pointer; transition:.15s;
+  }
+  button.copy:hover{border-color:var(--accent); background:rgba(61,220,151,.07)}
+  button.copy[data-done="1"]{color:var(--accent-2); border-color:var(--accent-2)}
+  pre{
+    margin:0; background:var(--ink-2); border:1px solid var(--line); border-radius:12px;
+    padding:16px; overflow-x:auto;
+  }
+  code{font-family:var(--mono); font-size:12.5px; color:var(--txt); white-space:pre}
+
+  /* Notes */
+  .notes{display:grid; gap:14px; max-width:72ch}
+  .note{
+    border-left:2px solid var(--line); padding-left:16px; color:var(--muted); font-size:15px;
+  }
+  .note strong{color:var(--txt); font-weight:600}
+
+  footer{
+    border-top:1px solid var(--line); padding:36px 0 56px; color:var(--muted); font-size:13px;
+    display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center;
+  }
+  footer .v{font-family:var(--mono); letter-spacing:.1em}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">A badge for the agentic web</p>
+    <div class="seal-wrap">
+      <img src="/seal.svg" width="150" height="150" alt="Wired for Agents seal">
+    </div>
+    <h1>WIRED<span class="for"> for </span>AGENTS</h1>
+    <p class="proof">API&#8195;+&#8195;MCP</p>
+    <p class="lede">
+      One glance tells a human or an AI agent that this product can be discovered and
+      <strong>acted on programmatically</strong>. Not a screen an agent scrapes.
+      Doors that were built for it.
+    </p>
+  </header>
+
+  <section id="standard">
+    <h2>The standard</h2>
+    <p class="sub">
+      A badge is worth exactly what it certifies. All four criteria must be met.
+      Each one is written so an unattended agent can verify it from the public internet,
+      given only a domain name, in <strong>under 60 seconds</strong>.
+    </p>
+    <div class="grid">
+      <article class="card">
+        <span class="code">WFA-1</span>
+        <h3>Documented API</h3>
+        <p>A public, versioned HTTP API with a machine-readable OpenAPI 3.x document at a
+        stable URL that needs no authentication to read.</p>
+      </article>
+      <article class="card">
+        <span class="code">WFA-2</span>
+        <h3>MCP server</h3>
+        <p>A reachable Model Context Protocol server whose tools meaningfully overlap the
+        API surface, each with a valid input schema.</p>
+      </article>
+      <article class="card">
+        <span class="code">WFA-3</span>
+        <h3>Programmatic auth</h3>
+        <p>Scoped, revocable machine credentials presented in a header or standard auth
+        flow. No human in the loop at call time.</p>
+      </article>
+      <article class="card">
+        <span class="code">WFA-4</span>
+        <h3>Machine discovery</h3>
+        <p>An agent starting from the bare domain can find the doors unauthenticated, and
+        every URL it advertises resolves.</p>
+      </article>
+    </div>
+    <p class="sub" style="margin-top:28px">
+      Precise, testable definitions live in
+      <a href="https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md">SPEC.md</a>,
+      the versioned source of truth.
+    </p>
+  </section>
+
+  <section id="not-a-score">
+    <h2>What this is not</h2>
+    <p class="sub">
+      Several tools check whether an agent can <strong>read</strong> your site: whether you
+      serve markdown, publish an <code style="font-size:13px">llms.txt</code>, or survive a
+      crawl. Useful, and different from this.
+    </p>
+    <p class="sub">
+      This badge certifies a higher bar. An agent should not have to read your site at all.
+      It should be able to <strong>call you</strong>. There is no score and no maturity
+      level: the doors exist, or they do not.
+    </p>
+  </section>
+
+  <section id="variants">
+    <h2>Variants</h2>
+    <p class="sub">
+      Every cut ships at a stable URL, so the art can be updated once and every site that
+      embeds it follows.
+    </p>
+    <div class="grounds">
+      <div class="ground dark">
+        <span class="tag">On dark</span>
+        <img src="/badge.svg" width="216" height="56" alt="Wired for Agents badge, dark">
+        <img src="/badge-compact.svg" width="180" height="48" alt="Wired for Agents badge, compact">
+        <!-- Inlined deliberately: currentColor cannot cross an <img> boundary. -->
+        <div class="mono-demo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="216" height="56" viewBox="0 0 216 56" role="img" aria-label="Wired for Agents: API + MCP" fill="currentColor">
+            <rect x="1" y="1" width="214" height="54" rx="13" fill="none" stroke="currentColor" stroke-opacity=".28"/>
+            <polygon points="28,13 40.99,20.5 40.99,35.5 28,43 15.01,35.5 15.01,20.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M21 28 l4.5 4.5 l8.5 -10.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="21" cy="28" r="1.8" fill="currentColor"/>
+            <circle cx="34" cy="22" r="1.8" fill="currentColor"/>
+            <circle cx="28" cy="10.6" r="2.3" fill="currentColor"/>
+            <line x1="56" y1="15" x2="56" y2="41" stroke="currentColor" stroke-opacity=".28"/>
+            <text x="68" y="27" font-family="ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace" font-size="15" font-weight="700" letter-spacing=".5" textLength="131.5" lengthAdjust="spacingAndGlyphs" fill="currentColor">WIRED<tspan font-size="11" font-weight="600" letter-spacing="1" fill="currentColor" fill-opacity=".62"> for </tspan>AGENTS</text>
+            <text x="68" y="42" font-family="ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace" font-size="9.5" font-weight="600" letter-spacing="2.5" fill="currentColor" fill-opacity=".78">API&#8195;+&#8195;MCP</text>
+          </svg>
+        </div>
+      </div>
+      <div class="ground light">
+        <span class="tag">On light</span>
+        <img src="/badge-light.svg" width="216" height="56" alt="Wired for Agents badge, light">
+        <img src="/seal.svg" width="110" height="110" alt="Wired for Agents seal">
+      </div>
+    </div>
+    <p class="sub" style="margin-top:20px">
+      The monochrome cut inherits <code style="font-size:13px">currentColor</code>, so it
+      takes the color of whatever text surrounds it. <strong>It must be inlined to do
+      that.</strong> An SVG loaded through
+      <code style="font-size:13px">&lt;img&gt;</code> is an isolated document and
+      <code style="font-size:13px">currentColor</code> will not reach it, so the mono cut
+      would render black on black. Use the file directly in your markup, or reach for one
+      of the colored cuts.
+    </p>
+  </section>
+
+  <section id="ship">
+    <h2>Ship it</h2>
+    <p class="sub">
+      Meet the four criteria, then add one line to your footer.
+    </p>
+
+    <div class="snippet">
+      <div class="snippet-head">
+        <h3>HTML</h3>
+        <button class="copy" type="button">Copy</button>
+      </div>
+      <pre><code>&lt;a href="https://wiredforagents.com"&gt;
+  &lt;img src="https://wiredforagents.com/badge.svg"
+       alt="Wired for Agents: API + MCP" height="40"&gt;
+&lt;/a&gt;</code></pre>
+    </div>
+
+    <div class="snippet">
+      <div class="snippet-head">
+        <h3>Markdown</h3>
+        <button class="copy" type="button">Copy</button>
+      </div>
+      <pre><code>[![Wired for Agents: API + MCP](https://wiredforagents.com/badge.svg)](https://wiredforagents.com)</code></pre>
+    </div>
+
+    <div class="snippet">
+      <div class="snippet-head">
+        <h3>Inline SVG (no external request)</h3>
+        <button class="copy" type="button">Copy</button>
+      </div>
+      <pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="216" height="56" viewBox="0 0 216 56" role="img" aria-label="Wired for Agents: API + MCP"&gt;
+  &lt;defs&gt;&lt;linearGradient id="wfa-hex" x1="0" y1="0" x2="1" y2="1"&gt;
+    &lt;stop offset="0" stop-color="#3DDC97"/&gt;&lt;stop offset="1" stop-color="#56E1FF"/&gt;
+  &lt;/linearGradient&gt;&lt;/defs&gt;
+  &lt;rect x="1" y="1" width="214" height="54" rx="13" fill="#0E1216" stroke="rgba(255,255,255,.13)"/&gt;
+  &lt;polygon points="28,13 40.99,20.5 40.99,35.5 28,43 15.01,35.5 15.01,20.5" fill="none" stroke="url(#wfa-hex)" stroke-width="2.2" stroke-linejoin="round"/&gt;
+  &lt;path d="M21 28 l4.5 4.5 l8.5 -10.5" fill="none" stroke="#3DDC97" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/&gt;
+  &lt;circle cx="21" cy="28" r="1.8" fill="#56E1FF"/&gt;
+  &lt;circle cx="34" cy="22" r="1.8" fill="#56E1FF"/&gt;
+  &lt;circle cx="28" cy="10.6" r="2.3" fill="#3DDC97"/&gt;
+  &lt;line x1="56" y1="15" x2="56" y2="41" stroke="rgba(255,255,255,.13)"/&gt;
+  &lt;text x="68" y="27" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" letter-spacing=".5" textLength="131.5" lengthAdjust="spacingAndGlyphs" fill="#EAF0F2"&gt;WIRED&lt;tspan font-size="11" font-weight="600" letter-spacing="1" fill="#8B98A3"&gt; for &lt;/tspan&gt;AGENTS&lt;/text&gt;
+  &lt;text x="68" y="42" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="9.5" font-weight="600" letter-spacing="2.5" fill="#3DDC97"&gt;API&amp;#8195;+&amp;#8195;MCP&lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+    </div>
+  </section>
+
+  <section id="notes">
+    <h2>Notes</h2>
+    <div class="notes">
+      <p class="note">
+        <strong>This badge is self-asserted.</strong> There is no registry and no
+        gatekeeper. Nothing technically stops a site that does not meet the criteria from
+        pasting the SVG. That is the same trust model as "Works with" marks, and it is
+        stated here plainly rather than implied. The criteria are public and mechanically
+        checkable precisely so that a false claim is cheap for anyone to disprove.
+      </p>
+      <p class="note">
+        <strong>It can graduate without changing the art.</strong> Because every criterion
+        is objectively testable, a published manifest, a crawler, and per-domain badges
+        reflecting live status can be layered on later. That happens if and when the
+        self-asserted badge earns the demand for it.
+      </p>
+      <p class="note">
+        <strong>Names considered.</strong> <span style="font-family:var(--mono);font-size:.9em">MCP-READY</span>
+        dropped the API half. <span style="font-family:var(--mono);font-size:.9em">OPEN-AGENT</span>
+        leaned standards-body. The wordmark you see solves the one real constraint: it has
+        to stay legible at 40 pixels tall in somebody else's footer.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="v">WIRED FOR AGENTS v0.1</span>
+    <span>
+      <a href="https://github.com/Flatts3000/wired-for-agents">Source</a> &middot;
+      <a href="https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md">Spec</a> &middot;
+      <a href="/llms.txt">llms.txt</a>
+    </span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll("button.copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var code = btn.closest(".snippet").querySelector("code");
+      var text = code.textContent;
+      var done = function () {
+        btn.textContent = "Copied";
+        btn.dataset.done = "1";
+        setTimeout(function () {
+          btn.textContent = "Copy";
+          delete btn.dataset.done;
+        }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { btn.textContent = "Press Ctrl+C"; }
+        document.body.removeChild(ta);
+      }
+    });
+  });
+</script>
+</body>
+</html>

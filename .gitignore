@@ -20,6 +20,9 @@ desktop.ini
 # Local scratch
 tmp/
 scratch/
+.ruff_cache/
+.playwright-mcp/
+*.screenshot.png
 
 # Internal strategy / build docs - deliberately NOT published.
 # docs/handoff.md is the working build spec and stays on local machines only.
