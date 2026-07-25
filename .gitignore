@@ -28,3 +28,5 @@ scratch/
 # docs/handoff.md is the working build spec and stays on local machines only.
 # If a genuinely public doc is ever added here, un-ignore it explicitly.
 docs/
+
+.vercel
