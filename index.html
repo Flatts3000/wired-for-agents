@@ -7,13 +7,17 @@
 <meta name="description" content="A vendor-neutral badge and mini-standard certifying that a product can be discovered and acted on programmatically, via a documented API and an MCP server.">
 <link rel="canonical" href="https://wiredforagents.com">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wired for Agents">
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="Wired for Agents - a badge for the agentic web">
 <meta property="og:description" content="Not a screen an agent scrapes. Doors that were built for it. API + MCP.">
 <meta property="og:url" content="https://wiredforagents.com">
-<!-- og.png (1200x630 raster) is still to be produced; most scrapers will not render SVG. -->
 <meta property="og:image" content="https://wiredforagents.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wired for Agents: API + MCP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Wired for Agents - a badge for the agentic web">
 <meta name="twitter:description" content="Not a screen an agent scrapes. Doors that were built for it. API + MCP.">
@@ -22,10 +26,43 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Wired for Agents",
-  "url": "https://wiredforagents.com",
-  "description": "A vendor-neutral badge and mini-standard certifying that a product can be discovered and acted on programmatically, via a documented API and an MCP server."
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://wiredforagents.com/#organization",
+      "name": "Wired for Agents",
+      "url": "https://wiredforagents.com",
+      "logo": "https://wiredforagents.com/seal.svg",
+      "description": "Publisher of the Wired for Agents badge and specification, a vendor-neutral mark certifying that a product exposes programmatic interfaces built for AI agents.",
+      "sameAs": ["https://github.com/Flatts3000/wired-for-agents"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://wiredforagents.com/#website",
+      "name": "Wired for Agents",
+      "url": "https://wiredforagents.com",
+      "publisher": { "@id": "https://wiredforagents.com/#organization" },
+      "description": "A vendor-neutral badge and mini-standard certifying that a product can be discovered and acted on programmatically, via a documented API and an MCP server."
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://wiredforagents.com/#spec",
+      "headline": "Wired for Agents: the standard",
+      "url": "https://wiredforagents.com/spec",
+      "description": "Four criteria certifying that a product has programmatic doors: a documented API, an MCP server, programmatic auth, and machine discovery.",
+      "isPartOf": { "@id": "https://wiredforagents.com/#website" },
+      "publisher": { "@id": "https://wiredforagents.com/#organization" },
+      "datePublished": "2026-07-25",
+      "dateModified": "2026-07-25",
+      "proficiencyLevel": "Expert",
+      "hasPart": [
+        { "@type": "DefinedTerm", "termCode": "WFA-1", "name": "Documented API", "description": "A public, versioned HTTP API with a machine-readable OpenAPI 3.x document at a stable URL that needs no authentication to read." },
+        { "@type": "DefinedTerm", "termCode": "WFA-2", "name": "MCP server", "description": "A reachable Model Context Protocol server whose tools meaningfully overlap the API surface, each with a valid input schema." },
+        { "@type": "DefinedTerm", "termCode": "WFA-3", "name": "Programmatic auth", "description": "Scoped, revocable machine credentials presented in a header or standard auth flow. No human in the loop at call time." },
+        { "@type": "DefinedTerm", "termCode": "WFA-4", "name": "Machine discovery", "description": "An agent starting from the bare domain can find the doors unauthenticated, and every URL it advertises resolves." }
+      ]
+    }
+  ]
 }
 </script>
 <style>
@@ -114,7 +151,8 @@
     font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase;
   }
   .ground.dark .tag{color:var(--muted)}
-  .ground.light .tag{color:#68757F}
+  /* #616E78 on #F4F7F8 = 4.86:1 (AA). #68757F measured 4.39:1 and failed. */
+  .ground.light .tag{color:#616E78}
   .mono-demo{color:var(--accent-2)}
 
   /* Snippets */
@@ -137,6 +175,19 @@
     margin:0; background:var(--ink-2); border:1px solid var(--line); border-radius:12px;
     padding:16px; overflow-x:auto;
   }
+  /* Focusable so keyboard users can scroll the overflow (WCAG 2.1.1). */
+  pre:focus-visible{outline:2px solid var(--accent-2); outline-offset:3px}
+
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+  }
+  .skip{
+    position:absolute; left:-9999px; top:8px; z-index:10;
+    background:var(--ink-2); color:var(--txt); border:1px solid var(--accent);
+    border-radius:8px; padding:10px 16px; font-family:var(--mono); font-size:13px;
+  }
+  .skip:focus{left:24px}
   code{font-family:var(--mono); font-size:12.5px; color:var(--txt); white-space:pre}
 
   /* Notes */
@@ -151,10 +202,12 @@
     display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center;
   }
   footer .v{font-family:var(--mono); letter-spacing:.1em}
+  footer a{display:inline-block; padding:4px 2px}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important}}
 </style>
 </head>
 <body>
+<a class="skip" href="#standard">Skip to the standard</a>
 <div class="wrap">
 
   <header>
@@ -206,8 +259,7 @@
     </div>
     <p class="sub" style="margin-top:28px">
       Precise, testable definitions live in
-      <a href="https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md">SPEC.md</a>,
-      the versioned source of truth.
+      <a href="/spec">the specification</a>, the versioned source of truth.
     </p>
   </section>
 
@@ -277,9 +329,9 @@
     <div class="snippet">
       <div class="snippet-head">
         <h3>HTML</h3>
-        <button class="copy" type="button">Copy</button>
+        <button class="copy" type="button" data-label="HTML snippet">Copy</button>
       </div>
-      <pre><code>&lt;a href="https://wiredforagents.com"&gt;
+      <pre tabindex="0" role="region" aria-label="HTML embed snippet, scrollable"><code>&lt;a href="https://wiredforagents.com"&gt;
   &lt;img src="https://wiredforagents.com/badge.svg"
        alt="Wired for Agents: API + MCP" height="40"&gt;
 &lt;/a&gt;</code></pre>
@@ -288,17 +340,17 @@
     <div class="snippet">
       <div class="snippet-head">
         <h3>Markdown</h3>
-        <button class="copy" type="button">Copy</button>
+        <button class="copy" type="button" data-label="Markdown snippet">Copy</button>
       </div>
-      <pre><code>[![Wired for Agents: API + MCP](https://wiredforagents.com/badge.svg)](https://wiredforagents.com)</code></pre>
+      <pre tabindex="0" role="region" aria-label="Markdown embed snippet, scrollable"><code>[![Wired for Agents: API + MCP](https://wiredforagents.com/badge.svg)](https://wiredforagents.com)</code></pre>
     </div>
 
     <div class="snippet">
       <div class="snippet-head">
         <h3>Inline SVG (no external request)</h3>
-        <button class="copy" type="button">Copy</button>
+        <button class="copy" type="button" data-label="Inline SVG snippet">Copy</button>
       </div>
-      <pre><code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="216" height="56" viewBox="0 0 216 56" role="img" aria-label="Wired for Agents: API + MCP"&gt;
+      <pre tabindex="0" role="region" aria-label="Inline SVG badge source, scrollable"><code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="216" height="56" viewBox="0 0 216 56" role="img" aria-label="Wired for Agents: API + MCP"&gt;
   &lt;defs&gt;&lt;linearGradient id="wfa-hex" x1="0" y1="0" x2="1" y2="1"&gt;
     &lt;stop offset="0" stop-color="#3DDC97"/&gt;&lt;stop offset="1" stop-color="#56E1FF"/&gt;
   &lt;/linearGradient&gt;&lt;/defs&gt;
@@ -340,48 +392,19 @@
     </div>
   </section>
 
+  <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+
   <footer>
     <span class="v">WIRED FOR AGENTS v0.1</span>
     <span>
       <a href="https://github.com/Flatts3000/wired-for-agents">Source</a> &middot;
-      <a href="https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md">Spec</a> &middot;
+      <a href="/spec">Spec</a> &middot;
       <a href="/llms.txt">llms.txt</a>
     </span>
   </footer>
 
 </div>
 
-<script>
-  document.querySelectorAll("button.copy").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var code = btn.closest(".snippet").querySelector("code");
-      var text = code.textContent;
-      var done = function () {
-        btn.textContent = "Copied";
-        btn.dataset.done = "1";
-        setTimeout(function () {
-          btn.textContent = "Copy";
-          delete btn.dataset.done;
-        }, 1800);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, fallback);
-      } else {
-        fallback();
-      }
-      function fallback() {
-        var ta = document.createElement("textarea");
-        ta.value = text;
-        ta.setAttribute("readonly", "");
-        ta.style.position = "fixed";
-        ta.style.opacity = "0";
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand("copy"); done(); } catch (e) { btn.textContent = "Press Ctrl+C"; }
-        document.body.removeChild(ta);
-      }
-    });
-  });
-</script>
+<script src="/copy.js" defer></script>
 </body>
 </html>

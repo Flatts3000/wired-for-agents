@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Specification - Wired for Agents</title>
+<meta name="description" content="The versioned Wired for Agents specification: WFA-1 documented API, WFA-2 MCP server, WFA-3 programmatic auth, WFA-4 machine discovery.">
+<link rel="canonical" href="https://wiredforagents.com/spec">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Wired for Agents">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Specification - Wired for Agents">
+<meta property="og:description" content="Four criteria certifying that a product has programmatic doors. Each verifiable by an agent in under 60 seconds.">
+<meta property="og:url" content="https://wiredforagents.com/spec">
+<meta property="og:image" content="https://wiredforagents.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wired for Agents: API + MCP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wiredforagents.com/og.png">
+<meta name="theme-color" content="#0E1216">
+<style>
+  :root{
+    --ink:#0E1216; --ink-2:#151C23; --accent:#3DDC97; --accent-2:#56E1FF;
+    --txt:#EAF0F2; --muted:#8B98A3; --line:rgba(255,255,255,.13);
+    --mono:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--ink); color:var(--txt); font-family:var(--sans);
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px 96px}
+  a{color:var(--accent)}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:2px solid var(--accent-2); outline-offset:3px; border-radius:4px}
+  .skip{
+    position:absolute; left:-9999px; top:8px; z-index:10; background:var(--ink-2);
+    color:var(--txt); border:1px solid var(--accent); border-radius:8px;
+    padding:10px 16px; font-family:var(--mono); font-size:13px;
+  }
+  .skip:focus{left:24px}
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:24px 0 40px; flex-wrap:wrap;
+  }
+  .topbar a{
+    font-family:var(--mono); font-size:12px; letter-spacing:.12em;
+    text-transform:uppercase; text-decoration:none; display:inline-block; padding:4px 2px;
+  }
+  h1{
+    font-family:var(--mono); font-size:clamp(26px,5vw,38px); font-weight:700;
+    letter-spacing:.01em; line-height:1.15; margin:0 0 8px;
+  }
+  h2{
+    font-family:var(--mono); font-size:15px; font-weight:700; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--muted);
+    margin:56px 0 14px; padding-top:24px; border-top:1px solid var(--line);
+  }
+  h3{font-size:19px; margin:36px 0 8px; font-weight:650}
+  h4{
+    font-family:var(--mono); font-size:13px; letter-spacing:.06em;
+    color:var(--accent); margin:24px 0 6px;
+  }
+  p,li{color:#C7D1D6}
+  strong{color:var(--txt)}
+  blockquote{
+    margin:20px 0; padding:2px 0 2px 18px; border-left:2px solid var(--line);
+    color:var(--muted);
+  }
+  code{
+    font-family:var(--mono); font-size:.88em; background:var(--ink-2);
+    border:1px solid var(--line); border-radius:5px; padding:1px 5px; color:var(--txt);
+  }
+  pre{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:12px;
+    padding:16px; overflow-x:auto; margin:20px 0;
+  }
+  pre:focus-visible{outline:2px solid var(--accent-2); outline-offset:3px}
+  pre code{background:none; border:0; padding:0; font-size:12.5px; white-space:pre}
+  hr{border:0; border-top:1px solid var(--line); margin:48px 0}
+  /* SPEC.md uses --- before most section headings; the h2 already draws a rule,
+     so collapse the pair instead of rendering two lines. */
+  hr + h2{border-top:0; padding-top:0; margin-top:28px}
+  hr:has(+ h2){display:none}
+  table{border-collapse:collapse; width:100%; margin:20px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:9px 12px; text-align:left}
+  th{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+  ul,ol{padding-left:22px}
+  li{margin:5px 0}
+  footer{
+    border-top:1px solid var(--line); margin-top:64px; padding-top:28px;
+    color:var(--muted); font-size:13px; display:flex; gap:16px;
+    justify-content:space-between; flex-wrap:wrap;
+  }
+  footer a{display:inline-block; padding:4px 2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Skip to the specification</a>
+<div class="wrap">
+  <nav class="topbar">
+    <a href="/">&#8592; Wired for Agents</a>
+    <a href="https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md">Source on GitHub</a>
+  </nav>
+  <main id="content">
+<h1>Wired for Agents<br><span style="color:var(--muted);font-size:.62em">Specification</span></h1>
+<p><strong>Version 0.1</strong> (draft) | Last updated 2026-07-25</p>
+<p>This document is the versioned source of truth for what earns the WIRED FOR AGENTS
+badge. Where the README, the landing page, or any other restatement disagrees with
+this file, this file wins.</p>
+<hr>
+<h2 id="0-what-this-certifies">0. What this certifies</h2>
+<p>A product displaying this badge asserts that an AI agent can <strong>call it</strong>, not merely
+read it.</p>
+<p>That distinction is the whole specification. Publishing markdown, an <code>llms.txt</code>, or a
+crawlable DOM makes a site <em>legible</em> to agents. This badge is about a stricter property:
+that documented, authenticated, machine-callable interfaces exist, and that an agent can
+find them without a human.</p>
+<p>A product either has those doors or it does not. There is no score and no maturity level.</p>
+<h3 id="design-constraint">Design constraint</h3>
+<p>Every criterion below is written so that an unattended agent can verify it from the
+public internet, given only a domain name, in <strong>under 60 seconds</strong>. That constraint is
+deliberate: it is what allows the self-asserted v1 badge to graduate into an automated
+verified program (Section 3) without the criteria changing.</p>
+<p>If a proposed criterion cannot be mechanically tested, it does not belong in this spec.</p>
+<hr>
+<h2 id="1-the-criteria">1. The criteria</h2>
+<p>A product must meet <strong>all four</strong>. Partial compliance does not earn the mark.</p>
+<h3 id="wfa-1-documented-api">WFA-1 - Documented API</h3>
+<p>A public, versioned HTTP API described by a machine-readable OpenAPI document.</p>
+<p><strong>Requirements</strong>
+1. The API is reachable over HTTPS on a public hostname.
+2. It is explicitly versioned, in the path (<code>/api/v1/...</code>) or via a documented header.
+3. An OpenAPI 3.x document is served at a stable, publicly fetchable URL, with no
+   authentication required <strong>to read the document itself</strong>.
+4. The document is valid OpenAPI, parses without error, and describes the API actually
+   being served, including at least one operation an agent can call.
+5. It is served as JSON or YAML with a sensible content type.</p>
+<p><strong>How to verify</strong></p>
+<pre tabindex="0" role="region" aria-label="Code sample, scrollable"><code>GET https://&lt;host&gt;/openapi.json      -&gt; 200, parses as OpenAPI 3.x
+</code></pre>
+<p>Any stable documented path is acceptable. The document must be discoverable by WFA-4.</p>
+<p><strong>Does not qualify:</strong> human-only HTML documentation; a Postman collection alone; an
+OpenAPI file behind a login; a spec that has drifted from the live API.</p>
+<hr>
+<h3 id="wfa-2-mcp-server">WFA-2 - MCP server</h3>
+<p>A Model Context Protocol server exposing the product's capabilities as first-class agent
+tools.</p>
+<p><strong>Requirements</strong>
+1. A reachable MCP endpoint, over a documented transport.
+2. It completes the MCP initialization handshake and responds to tool discovery with at
+   least one tool.
+3. Tools carry names, descriptions, and input schemas sufficient for an agent to call
+   them without out-of-band knowledge.
+4. The exposed capabilities <strong>meaningfully overlap the API surface</strong> from WFA-1. An MCP
+   server exposing only a token trivial tool while the real functionality stays
+   API-locked does not satisfy this.
+5. The endpoint is documented at a public URL.</p>
+<p><strong>How to verify</strong></p>
+<pre tabindex="0" role="region" aria-label="Code sample, scrollable"><code>initialize -&gt; tools/list      -&gt; at least one tool, each with a valid input schema
+</code></pre>
+<p><strong>Does not qualify:</strong> a planned or beta-waitlist MCP server; an internal-only endpoint;
+a tools list that fails schema validation.</p>
+<hr>
+<h3 id="wfa-3-programmatic-auth">WFA-3 - Programmatic auth</h3>
+<p>Credentials designed for machines, obtainable and usable without a human in the loop at
+call time.</p>
+<p><strong>Requirements</strong>
+1. Machine credentials exist: API keys, OAuth client-credentials tokens, or equivalent.
+2. They are presented programmatically, in a header or standard auth flow. No session
+   cookie harvested from a browser login.
+3. They are <strong>scoped</strong>: permissions can be limited to less than the full account, and the
+   available scopes are documented.
+4. They are revocable independently of the owner's primary password.
+5. Issuance is documented. A human may create the key once; <strong>calls must not require
+   per-request human interaction.</strong></p>
+<p><strong>How to verify:</strong> documented credential issuance, documented scopes, and an
+authenticated call succeeding with a header-presented credential.</p>
+<p><strong>Does not qualify:</strong> scraping a session cookie; credentials only issued via a sales
+conversation with no documented process; all-or-nothing tokens with no scoping; auth that
+requires an interactive consent screen on every call.</p>
+<blockquote>
+<p>A public, genuinely unauthenticated read API satisfies WFA-3 for its public surface,
+provided that is documented as intentional. The criterion tests that machine access is
+designed for, not that a gate exists.</p>
+</blockquote>
+<hr>
+<h3 id="wfa-4-machine-discovery">WFA-4 - Machine discovery</h3>
+<p>An agent starting from nothing but the domain can find the doors on its own.</p>
+<p><strong>Requirements</strong></p>
+<p>At least one of:
+- <code>/.well-known/wired-for-agents.json</code> (see Section 4), or
+- an <code>/llms.txt</code> that links the OpenAPI document and the MCP endpoint, or
+- a <code>&lt;link&gt;</code> relation or documented, stable, conventionally located OpenAPI URL.</p>
+<p>And in all cases:
+1. Discovery requires <strong>no authentication</strong>.
+2. Every URL it advertises resolves. A manifest pointing at a 404 fails this criterion
+   outright.
+3. The advertised URLs are absolute or unambiguously resolvable.</p>
+<p><strong>How to verify:</strong> fetch the discovery surface from the bare domain, follow every URL it
+advertises, confirm each resolves and matches its claim.</p>
+<p><strong>Does not qualify:</strong> documentation findable only via site search or a marketing nav;
+endpoints published only in a PDF or a blog post; a manifest with stale URLs.</p>
+<hr>
+<h2 id="2-how-to-self-assert">2. How to self-assert</h2>
+<p>Version 1 of this badge is <strong>self-asserted</strong>. There is no registry, no application, and
+no gatekeeper.</p>
+<ol>
+<li>Confirm you meet WFA-1 through WFA-4. Verify them the way an agent would, from outside
+   your network, unauthenticated where the criteria say unauthenticated.</li>
+<li>Embed the badge, linking to <code>https://wiredforagents.com</code>.</li>
+<li>Recommended: publish <code>/.well-known/wired-for-agents.json</code> (Section 4). It costs
+   minutes and makes you verifiable the moment the verified program exists.</li>
+</ol>
+<p><strong>Be honest.</strong> Nothing technically stops a non-qualifying site from displaying the badge.
+That is a known property of a self-asserted mark, stated plainly rather than implied. The
+mark is worth exactly what its wearers' honesty makes it worth, and the criteria are
+public and checkable precisely so that a false claim is cheap for anyone to disprove.</p>
+<hr>
+<h2 id="3-roadmap-to-verified">3. Roadmap to verified</h2>
+<p>The criteria above were written to be mechanically testable, which lets this graduate
+without changing the art or the standard:</p>
+<ul>
+<li><strong>Manifest convention</strong> - <code>/.well-known/wired-for-agents.json</code>, already specified below.</li>
+<li><strong>Verifier</strong> - fetches a candidate domain, evaluates WFA-1 through WFA-4, publishes the
+  result.</li>
+<li><strong>Dynamic badges</strong> - a shields-style endpoint reflecting live status per domain.</li>
+</ul>
+<p>This happens only if the self-asserted badge earns demand for it. Until then, the manifest
+is optional and the badge means what Section 2 says it means.</p>
+<hr>
+<h2 id="4-well-knownwired-for-agentsjson-optional-in-v01">4. <code>/.well-known/wired-for-agents.json</code> (optional in v0.1)</h2>
+<pre tabindex="0" role="region" aria-label="Code sample, scrollable"><code class="language-json">{
+  &quot;wiredForAgents&quot;: &quot;0.1&quot;,
+  &quot;openapi&quot;: &quot;https://example.com/api/v1/openapi.json&quot;,
+  &quot;mcp&quot;: {
+    &quot;endpoint&quot;: &quot;https://mcp.example.com&quot;,
+    &quot;transport&quot;: &quot;streamable-http&quot;
+  },
+  &quot;auth&quot;: {
+    &quot;type&quot;: &quot;api-key&quot;,
+    &quot;docs&quot;: &quot;https://example.com/docs/authentication&quot;,
+    &quot;scoped&quot;: true
+  },
+  &quot;discovery&quot;: [&quot;https://example.com/llms.txt&quot;],
+  &quot;contact&quot;: &quot;api@example.com&quot;
+}
+</code></pre>
+<p>Served as <code>application/json</code>, unauthenticated, with permissive CORS. Every URL it
+advertises must resolve.</p>
+<hr>
+<h2 id="5-changelog">5. Changelog</h2>
+<h3 id="v01-2026-07-25">v0.1 - 2026-07-25</h3>
+<p>Initial draft. Establishes WFA-1 through WFA-4, the under-60-seconds verifiability
+constraint, the self-assertion model, and the optional <code>.well-known</code> manifest.</p>
+<blockquote>
+<p>Criteria were previously drafted under the codes <code>AR-1</code> through <code>AR-4</code>. Those codes are
+retired; any document using them predates 2026-07-25.</p>
+</blockquote>
+  </main>
+  <footer>
+    <span>Generated from <code>SPEC.md</code>, the versioned source of truth.</span>
+    <span><a href="/">Home</a> &middot; <a href="/llms.txt">llms.txt</a></span>
+  </footer>
+</div>
+</body>
+</html>

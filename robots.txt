@@ -1,0 +1,7 @@
+# Wired for Agents - https://wiredforagents.com
+# Everything here is public and intended to be read by machines.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://wiredforagents.com/sitemap.xml

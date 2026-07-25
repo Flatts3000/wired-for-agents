@@ -1,0 +1,11 @@
+# Wired for Agents - security contact
+# https://wiredforagents.com/.well-known/security.txt
+
+Contact: https://github.com/Flatts3000/wired-for-agents/security/advisories/new
+Expires: 2027-07-25T00:00:00.000Z
+Policy: https://github.com/Flatts3000/wired-for-agents/blob/main/SECURITY.md
+Preferred-Languages: en
+
+# The highest-severity issue this project can have is asset tampering: the badge
+# SVGs are hot-linked directly by third-party sites. Please report anything that
+# could cause a malicious payload to be served from a badge URL first.

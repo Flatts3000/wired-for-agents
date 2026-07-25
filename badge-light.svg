@@ -2,17 +2,17 @@
   <title>Wired for Agents: API + MCP</title>
   <defs>
     <linearGradient id="wfa-hex-light" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0F9C6B"/>
+      <stop offset="0" stop-color="#0B7D55"/>
       <stop offset="1" stop-color="#1897B5"/>
     </linearGradient>
   </defs>
   <rect x="1" y="1" width="214" height="54" rx="13" fill="#FFFFFF" stroke="rgba(14,18,22,.14)"/>
   <polygon points="28,13 40.99,20.5 40.99,35.5 28,43 15.01,35.5 15.01,20.5" fill="none" stroke="url(#wfa-hex-light)" stroke-width="2.2" stroke-linejoin="round"/>
-  <path d="M21 28 l4.5 4.5 l8.5 -10.5" fill="none" stroke="#0F9C6B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 28 l4.5 4.5 l8.5 -10.5" fill="none" stroke="#0B7D55" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   <circle cx="21" cy="28" r="1.8" fill="#1897B5"/>
   <circle cx="34" cy="22" r="1.8" fill="#1897B5"/>
-  <circle cx="28" cy="10.6" r="2.3" fill="#0F9C6B"/>
+  <circle cx="28" cy="10.6" r="2.3" fill="#0B7D55"/>
   <line x1="56" y1="15" x2="56" y2="41" stroke="rgba(14,18,22,.14)"/>
   <text x="68" y="27" font-family="ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace" font-size="15" font-weight="700" letter-spacing=".5" textLength="131.5" lengthAdjust="spacingAndGlyphs" fill="#0E1216">WIRED<tspan font-size="11" font-weight="600" letter-spacing="1" fill="#68757F"> for </tspan>AGENTS</text>
-  <text x="68" y="42" font-family="ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace" font-size="9.5" font-weight="600" letter-spacing="2.5" fill="#0F9C6B">API&#8195;+&#8195;MCP</text>
+  <text x="68" y="42" font-family="ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace" font-size="9.5" font-weight="600" letter-spacing="2.5" fill="#0B7D55">API&#8195;+&#8195;MCP</text>
 </svg>

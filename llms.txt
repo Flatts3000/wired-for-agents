@@ -36,7 +36,9 @@ for anyone to disprove.
 
 ## Links
 
-- Specification: https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md
+- Specification: https://wiredforagents.com/spec
+- Specification source (Markdown): https://github.com/Flatts3000/wired-for-agents/blob/main/SPEC.md
 - Source and issues: https://github.com/Flatts3000/wired-for-agents
 - Badge asset: https://wiredforagents.com/badge.svg
-- Security policy: https://github.com/Flatts3000/wired-for-agents/blob/main/SECURITY.md
+- Sitemap: https://wiredforagents.com/sitemap.xml
+- Security contact: https://wiredforagents.com/.well-known/security.txt
