@@ -37,14 +37,34 @@
         ta.style.opacity = "0";
         document.body.appendChild(ta);
         ta.select();
+
+        var copied = false;
         try {
-          document.execCommand("copy");
-          done();
+          copied = document.execCommand("copy");
         } catch (e) {
-          btn.textContent = "Press Ctrl+C";
-          announce("Copy failed. The snippet is selected, press Control C to copy it.");
+          copied = false;
         }
         document.body.removeChild(ta);
+
+        if (copied) {
+          done();
+          return;
+        }
+
+        // Select the real snippet in the page, so telling the user to press
+        // Ctrl+C is actually true. The throwaway textarea above is already gone,
+        // and its selection with it.
+        btn.textContent = "Press Ctrl+C";
+        try {
+          var range = document.createRange();
+          range.selectNodeContents(code);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          announce("Copy failed. The " + label + " is now selected, press Control C to copy it.");
+        } catch (e2) {
+          announce("Copy failed. Select the " + label + " manually to copy it.");
+        }
       }
 
       if (navigator.clipboard && navigator.clipboard.writeText) {

@@ -4,13 +4,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Current state
 
-Pre-scaffold. The repo holds its README, spec, license, and policy files; the landing
-page, badge SVGs, and `vercel.json` are not built yet. There is no package manifest, no
-build system, and no test suite, and that is deliberate rather than an omission.
+**Live at https://wiredforagents.com.** The landing page, `/spec`, all six badge cuts,
+`og.png`, `robots.txt`, `sitemap.xml`, `llms.txt`, and `.well-known/security.txt` are
+deployed. `wiredforagents.dev` and `www` 308 to the apex.
 
-Do not invent a toolchain. v1 is a zero-build static site: plain HTML plus SVG, deployed
-to Vercel. If a task seems to want npm/Next.js/a bundler, that is a scope change - raise
-it rather than introducing one.
+There is no package manifest, no build system, and no test suite, and that is deliberate
+rather than an omission. Do not invent a toolchain. v1 is a zero-build static site: plain
+HTML plus SVG, deployed to Vercel. If a task seems to want npm/Next.js/a bundler, that is
+a scope change - raise it rather than introducing one.
+
+**One exception:** `spec.html` is GENERATED from `SPEC.md` by `tools/build_spec.py`. Never
+hand-edit `spec.html`. Edit `SPEC.md`, re-run `python tools/build_spec.py`, and commit
+both. The generated output is committed precisely so Vercel still deploys with zero build.
+
+Deploys currently run via `vercel deploy --prod --yes`. Push-to-deploy is not wired up
+until the Vercel GitHub App is granted access to the repo.
 
 > **A build spec exists at `docs/handoff.md` but is gitignored and local-only.** If you
 > have it, read it first: it carries the locked decisions, canonical SVG source, file
