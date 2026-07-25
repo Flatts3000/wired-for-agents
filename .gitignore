@@ -1,0 +1,27 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Vercel
+.vercel/
+
+# Env / secrets - this project needs none, keep it that way
+.env
+.env.*
+*.pem
+*.key
+
+# Local scratch
+tmp/
+scratch/
+
+# Internal strategy / build docs - deliberately NOT published.
+# docs/handoff.md is the working build spec and stays on local machines only.
+# If a genuinely public doc is ever added here, un-ignore it explicitly.
+docs/

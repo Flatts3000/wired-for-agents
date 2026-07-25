@@ -1,0 +1,9 @@
+# Normalize to LF in the repo; check out native on Windows.
+* text=auto eol=lf
+
+# Assets that are served verbatim - never let a checkout rewrite them.
+*.svg  text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.png  binary
+*.ico  binary
